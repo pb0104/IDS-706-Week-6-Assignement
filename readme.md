@@ -48,24 +48,29 @@ The database contains a single table:
 ## Initial Data Exploration
 
 The following SQL queries were executed to summarize and understand the dataset:
+> These queries are executed in `query.py` using Python and Pandas for clearer output.
+
 
 1. **Total number of records**
 
 ```sql
 SELECT COUNT(*) AS total_rows FROM university_rankings;
 ```
+!["Total Records"](Results/Total_Records.png)
 
 2. **View first 10 records**
 
 ```sql
 SELECT * FROM university_rankings LIMIT 10;
 ```
+!["Top 10 Records"](Results/First_10_records.png)
 
 3. **List all distinct years in the dataset**
 
 ```sql
 SELECT DISTINCT year FROM university_rankings ORDER BY year;
 ```
+!["Distinct Years](Results/Distinct_years.png)
 
 4. **Universities appearing in multiple years**
 
@@ -77,6 +82,7 @@ HAVING COUNT(DISTINCT year) > 1
 ORDER BY years_present DESC, institution
 LIMIT 10;
 ```
+!["Universities in Multiple years"](Results/Uni_Multi_Years.png)
 
 5. **Average world rank per country in 2015**
 
@@ -89,6 +95,7 @@ GROUP BY country
 ORDER BY avg_rank_2015 ASC
 LIMIT 10;
 ```
+!["Average world rank per country in 2015"](Results/Avg_Rank_Country.png)
 
 6. **Year-over-year change in average score**
 
@@ -106,9 +113,8 @@ LEFT JOIN yearly_avg b
      ON a.year = b.year + 1
 ORDER BY a.year;
 ```
+!["Year-over-year change in average score"](Results/Year_over_year_Change.png)
 
-
-> These queries are executed in `query.py` using Python and Pandas for clearer output.
 
 
 ## CRUD Operations
@@ -123,6 +129,8 @@ ORDER BY a.year;
   ```
 * Verification confirms the row was added.
 
+!["Insert Duke Tech"](Results/Insert.png)
+
 ### 2. **Read**
 
 * Count universities from **Japan in the top 200** in 2013:
@@ -132,6 +140,8 @@ ORDER BY a.year;
   WHERE country = 'Japan' AND year = 2013 AND world_rank <= 200;
   ```
 * Result returned the correct count.
+
+!["Read Operation"](Results/Read.png)
 
 ### 3. **Update**
 
@@ -144,6 +154,8 @@ ORDER BY a.year;
   ```
 * Verified by selecting the updated row.
 
+!["Update Row"](Results/Update.png)
+
 ### 4. **Delete**
 
 * Remove universities in **2015 with score < 45**:
@@ -152,7 +164,9 @@ ORDER BY a.year;
   DELETE FROM university_rankings
   WHERE year = 2015 AND score < 45;
   ```
-* Verified by checking remaining 2015 rows.
+* Verified by priting remaining 2015 rows having score < 45 and checking remaining 2015 rows.
+
+!["Delete"](Results/Delete.png)
 
 ---
 
@@ -179,21 +193,11 @@ sqlite3 data/university_database.db < scripts/queries.sql
 > Both methods execute initial exploration and CRUD operations.
 
 
-## Results & Observations
-
-* Dataset covers **2012–2015** with hundreds of universities.
-* Top countries by representation: **USA, UK, Germany**.
-* Average score gradually increases from 2012 to 2015.
-* Universities appearing in multiple years are mostly top-ranked institutions.
-* Insert, update, and delete operations were successfully applied.
-
-
 ## Notes
 
 * All SQL queries are included in `queries.sql`.
 * Python script `query.py` automates execution and prints results.
 * The database used is `university_database.db`.
-
 
 
 

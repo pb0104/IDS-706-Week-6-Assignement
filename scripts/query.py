@@ -18,8 +18,14 @@ def main():
 
     # Initial Exploration Queries
 
+    # total number of records
+    run_query("SELECT COUNT(*) AS total_records FROM university_rankings;", "Total Records")
+
     # View first 10 records
     run_query("SELECT * FROM university_rankings LIMIT 10;", "First 10 Records")
+
+    # List all distinct years in the dataset
+    run_query("SELECT DISTINCT year FROM university_rankings ORDER BY year;", "Distinct Years")
 
     # How many universities appear in multiple years
     run_query("""

@@ -36,13 +36,22 @@ The database contains a single table:
 
 **`university_rankings`**
 
-| Column Name | Data Type |
-| ----------- | --------- |
-| institution | TEXT      |
-| country     | TEXT      |
-| world_rank  | INTEGER   |
-| score       | REAL      |
-| year        | INTEGER   |
+| Column Name            | SQLite Type | Description                                                     |
+| ---------------------- | ----------- | --------------------------------------------------------------- |
+| `world_rank`           | INTEGER     | Global ranking position of the university                       |
+| `institution`          | TEXT        | Name of the university                                          |
+| `country`              | TEXT        | Country where the university is located                         |
+| `national_rank`        | REAL        | National rank within the country                                |
+| `quality_of_education` | REAL        | Ranking score for quality of education                          |
+| `alumni_employment`    | REAL        | Ranking score based on alumni employment outcomes               |
+| `quality_of_faculty`   | REAL        | Ranking score based on faculty quality                          |
+| `publications`         | REAL        | Rank based on number of research publications                   |
+| `influence`            | REAL        | Rank based on institutional influence                           |
+| `citations`            | REAL        | Rank based on total citations                                   |
+| `broad_impact`         | TEXT        | Broad academic impact (string/numeric mix; some missing values) |
+| `patents`              | REAL        | Rank based on patent output                                     |
+| `score`                | REAL        | Overall score of the university                                 |
+| `year`                 | INTEGER     | Year of ranking                                                 |
 
 
 ## Initial Data Exploration
